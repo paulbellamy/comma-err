@@ -72,7 +72,7 @@
                :unhandled)))
 
   (testing "it can match different exceptions"
-    (is (= :timeout (condp-err instance? (identity '(nil (TimeoutException.)))
+    (is (= :timeout (condp-err instance? (identity [nil (TimeoutException.)])
                       FileNotFoundException :file_not_found
                       TimeoutException :timeout
                       :unhandled)))))
