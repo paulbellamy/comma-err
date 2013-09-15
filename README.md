@@ -1,6 +1,6 @@
-# clj-comma-err
+# comma-err
 
-A Clojure library designed to ... well, that part is up to you.
+An experiment in Go-style local error handling in Clojure.
 
 ## Usage
 
@@ -8,6 +8,6 @@ FIXME
 
 ## License
 
-Copyright © 2013 FIXME
+Copyright © 2013 Paul Bellamy
 
-Distributed under the Eclipse Public License, the same as Clojure.
+Distributed under the MIT License.
