@@ -5,7 +5,8 @@
   :url "http://github.com/paulbellamy/clj-comma-err"
 
   :license {:name "MIT License"
-            :distribution :repo}
+            :distribution :repo
+            :url "https://raw.github.com/paulbellamy/comma-err/master/LICENSE"}
 
   :profiles {:dev {:dependencies [[org.clojure/clojure "1.5.1"]
                                   [perforate "0.3.3"]]
