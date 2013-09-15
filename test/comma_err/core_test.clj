@@ -1,6 +1,6 @@
-(ns clj-comma-err.core-test
+(ns comma-err.core-test
   (:use clojure.test
-        clj-comma-err.core)
+        comma-err.core)
   (:import [java.util.concurrent TimeoutException]
            [java.io FileNotFoundException]))
 

@@ -1,4 +1,4 @@
-(ns clj-comma-err.core)
+(ns comma-err.core)
 
 (defmacro comma-err
   "Takes a function call which would throw, and makes it return [result err].
