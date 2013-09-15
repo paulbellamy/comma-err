@@ -10,7 +10,8 @@
 
   :profiles {:dev {:dependencies [[org.clojure/clojure "1.5.1"]
                                   [perforate "0.3.3"]]
-                   :plugins [[perforate "0.3.3"]]}
+                   :plugins [[perforate "0.3.3"]
+                             [codox "0.6.4"]]}
 
              :1.3 {:dependencies [[org.clojure/clojure "1.3.0"]]}
 
@@ -21,6 +22,10 @@
              :1.6 {:dependencies [[org.clojure/clojure "1.6.0-master-SNAPSHOT"]]}}
 
   :aliases {"all" ["with-profile" "dev:1.3,dev:1.4,dev:1.5,dev:1.6,dev"]}
+
+  :codox {:exclude [comma-err.benchmarks.core]
+          :src-dir-uri "http://github.com/paulbellamy/comma-err/blob/0.1.0-SNAPSHOT"
+          :src-linenum-anchor-prefix "L"}
 
   :perforate {:environments [{:name :dev
                               :profiles [:dev]
