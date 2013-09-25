@@ -85,9 +85,9 @@
   ;=> returns 5
 
   (case-err (identity [nil (Exception. \"unhandled error 1\")])
-     FileNotFoundException (File/readAllBytes \"some/other/file.log\")
-     TimeoutException      :timeout
-     :unhandled_error)
+    FileNotFoundException (slurp \"some/other/file.log\")
+    TimeoutException      :timeout
+    :unhandled_error)
   ;=> returns :unhandled_error"
 
   [ f & clauses ]
@@ -106,9 +106,9 @@
   ;=> returns 5
 
   (condp-err instance? (identity [nil (TimeoutException.)])
-     FileNotFoundException (File/readAllBytes \"some/other/file.log\")
-     TimeoutException      :timeout
-     :unhandled_error)
+    FileNotFoundException (slurp \"some/other/file.log\")
+    TimeoutException      :timeout
+    :unhandled_error)
   ;=> returns :timeout"
 
   [ pred f & clauses ]
