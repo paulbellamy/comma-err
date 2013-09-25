@@ -14,6 +14,18 @@
      (catch Exception e#
        (list nil e#))))
 
+(defn comma-err-fn
+  "Takes a function which would throw, and makes it return [result err].
+  The value of err is the thrown exception.
+
+  Example:
+  ((comma-err-fn identity) 6)                               ;=> [6 nil]
+  ((comma-err-fn throw) (Exception. \"Something's wrong\")) ;=> [nil #<Exception java.lang.Exception: Something's wrong>]"
+  [f]
+  (fn [ & args ]
+    (comma-err
+      (apply f args))))
+
 (defmacro must
   "Takes a function call which would return [result err] and makes it throw an
   exception if err is not nil. The message of the exception is err.
@@ -26,6 +38,18 @@
      (if (nil? err#)
        result#
        (throw (Exception. err#)))))
+
+(defn must-fn
+  "Takes a function which would return [result err] and makes it throw an
+  exception if err is not nil. The message of the exception is err.
+
+  Example:
+  ((must-fn identity) [5 nil])                     ;=> 5
+  ((must-fn identity) [nil \"Something's wrong\"]) ;=> throws an exception"
+  [f]
+  (fn [ & args ]
+    (comma-err
+      (apply f args))))
 
 (defmacro when-err
   "Catch errors in the [result err] style, and handle them somehow. The error
@@ -91,3 +115,13 @@
   `(when-err ~f
     (condp ~pred ~'err
       ~@clauses)))
+
+(defn has-err?
+  "Check if a comma-err style return value has an error present.
+
+  Exmples:
+  (has-err? (identity [5 nil]))                     ;=> false
+  (has-err? (identity [nil \"Something's wrong\"])) ;=> true"
+
+  [[_ err]]
+  (not (nil? err)))
